@@ -36,3 +36,7 @@ class SensorTypeList(generics.ListCreateAPIView):
 class DataList(generics.ListCreateAPIView):
     queryset = Data.objects.all()
     serializer_class = DataSerializer
+
+class AnalysisList(generics.ListCreateAPIView):
+    queryset = Analysis.objects.all()
+    serializer_class = AnalysisSerializer
