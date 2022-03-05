@@ -3,48 +3,48 @@ from api.models import  User,Tag1,Tag2,Sensor,SensorType,Data,File,Analysis
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 
-    data = serializers.HyperlinkedRelatedField(view_name='data-detail', many=True, read_only=True)
+    data_user = serializers.HyperlinkedRelatedField(view_name='data-detail', many=True, read_only=True)
     
     class Meta:
         model = User
 
-        fields = ['url', 'id', 'name', 'data']
+        fields = ['url', 'id', 'name', 'data_user']
 
 class Tag1Serializer(serializers.HyperlinkedModelSerializer):
 
-    data = serializers.HyperlinkedRelatedField(view_name='data-detail', many=True, read_only=True)
+    data_tag1 = serializers.HyperlinkedRelatedField(view_name='data-detail', many=True, read_only=True)
     
     class Meta:
         model = Tag1
 
-        fields = ['url', 'id', 'name', 'data']
+        fields = ['url', 'id', 'name', 'data_tag1']
 
 class Tag2Serializer(serializers.HyperlinkedModelSerializer):
 
-    data = serializers.HyperlinkedRelatedField(view_name='data-detail', many=True, read_only=True)
+    ata_tag2 = serializers.HyperlinkedRelatedField(view_name='data-detail', many=True, read_only=True)
     
     class Meta:
         model = Tag2
 
-        fields = ['url', 'id', 'name', 'data']
+        fields = ['url', 'id', 'name', 'data_tag2']
 
 class SensorSerializer(serializers.HyperlinkedModelSerializer):
 
-    data = serializers.HyperlinkedRelatedField(view_name='data-detail', many=True, read_only=True)
+    data_sensor = serializers.HyperlinkedRelatedField(view_name='data-detail', many=True, read_only=True)
     
     class Meta:
         model = Sensor
 
-        fields = ['url', 'id', 'name', 'data']
+        fields = ['url', 'id', 'name', 'data_sensor']
 
 class SensorTypeSerializer(serializers.HyperlinkedModelSerializer):
 
-    data = serializers.HyperlinkedRelatedField(view_name='data-detail', many=True, read_only=True)
+    data_sensor_type = serializers.HyperlinkedRelatedField(view_name='data-detail', many=True, read_only=True)
     
     class Meta:
         model = SensorType
 
-        fields = ['url', 'id', 'name', 'data']
+        fields = ['url', 'id', 'name', 'data_sensor_type']
 
 class DataSerializer(serializers.HyperlinkedModelSerializer):
 
