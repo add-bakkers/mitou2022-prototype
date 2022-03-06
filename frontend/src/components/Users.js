@@ -11,6 +11,7 @@ const UserFetch = () => {
     axios
       .get("http://127.0.0.1:8000/users/")
       .then((res) => {
+        setUsers([])
         setUsers(res.data);
       });
   }, []);
@@ -37,6 +38,9 @@ const UserFetch = () => {
     const name = evt.target.name;
     setEditedUser({ ...editedUser, [name]: value });
   };
+  const handleClick = (name) => {
+    setUserstate(name);
+  };
 
   return (
     <div>
@@ -44,7 +48,8 @@ const UserFetch = () => {
         {users.map((user) => (
           <li key={user.id}>
             {" "}
-            {user.name} {user.id}
+            {user.name}
+            <button onClick={ () => handleClick(user.name)}>選択</button>
           </li>
         ))}
       </ul>

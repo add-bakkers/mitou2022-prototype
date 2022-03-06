@@ -3,6 +3,15 @@ import './App.css';
 import React, { useState } from "react";
 import UserFetch from './components/Users';
 import DataFetch from './components/Data';
+import FileFetch from './components/File';
+import { Grid } from '@material-ui/core';
+import Header from './components/Header';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
+
 
 export const UserState = React.createContext();
 
@@ -14,15 +23,22 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
+      <Grid container direction="column">
         <UserState.Provider value={value}>
-        <img src={logo} className="App-logo" alt="logo" />
-        <UserFetch />
-        <DataFetch />
+        <Grid item>
+          <Header />
+        </Grid>
+        <Grid item container>
+          <Grid sm={3}>
+          <UserFetch />
+          </Grid>
+          <Grid xs={12} sm={8}>
+            <DataFetch />
+            <FileFetch />
+          </Grid>
+        </Grid>
         </UserState.Provider>
-      </header>
-    </div>
+      </Grid>
   );
 }
 

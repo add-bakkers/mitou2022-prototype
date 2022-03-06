@@ -12,7 +12,7 @@ const DataFetch = () => {
     const data = {
       title: _data.title,
       description: _data.description,
-      user: userstate,
+      user: _data.user,
       tag1: _data.tag1, 
       tag2: _data.tag2, 
       sensor: _data.sensor, 
@@ -52,6 +52,14 @@ const DataFetch = () => {
         value={editedData.description}
         onChange={(evt) => handleInputChange(evt)}
         placeholder="description"
+        required
+      />
+        <input
+        type="text"
+        name="user"
+        value={editedData.user}
+        onChange={(evt) => handleInputChange(evt)}
+        placeholder="user"
         required
       />
       <input

@@ -62,3 +62,10 @@ class AnalysisSerializer(serializers.HyperlinkedModelSerializer):
         model = Analysis
 
         fields = ['url', 'id', 'name', 'data', 'method', 'result']
+
+class FileSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = File
+
+        fields = ['url', 'id', 'name', 'data', 'file']

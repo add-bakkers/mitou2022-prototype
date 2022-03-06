@@ -9,6 +9,9 @@ from rest_framework.response import Response
 from rest_framework import status
 from api import serializers
 from rest_framework import generics
+from rest_framework.parsers import JSONParser, FormParser, MultiPartParser
+from rest_framework.exceptions import ParseError
+from django.http import HttpResponse, JsonResponse
 
 from api.serializers import UserSerializer, Tag1Serializer,Tag2Serializer,SensorSerializer,SensorTypeSerializer,DataSerializer,AnalysisSerializer
 # Create your views here.
@@ -40,3 +43,18 @@ class DataList(generics.ListCreateAPIView):
 class AnalysisList(generics.ListCreateAPIView):
     queryset = Analysis.objects.all()
     serializer_class = AnalysisSerializer
+
+class FileList(generics.ListCreateAPIView):
+    queryset = File.objects.all()
+    serializer_class = AnalysisSerializer
+
+class UploadFile(generics.GenericAPIView):
+    queryset = File.objects.all()
+    parser_classes = [FormParser, MultiPartParser]
+
+    def post(self, request, *args, **kwargs):
+        try:
+            file = request.data['file']
+        except KeyError:
+            raise ParseError('Request has no resource file attached')
+        return JsonResponse({}, status=status.HTTP_201_CREATED)

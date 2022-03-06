@@ -19,6 +19,8 @@ urlpatterns = [
     path('data/<int:pk>/', views.DataList.as_view(), name='data-detail'),
     path('analysis/', views.AnalysisList.as_view()),
     path('analysis/<int:pk>/', views.AnalysisList.as_view(), name='analysis-detail'),
+    path('file/', views.UploadFile.as_view()),
+    path('file/<int:pk>/', views.FileList.as_view(), name='file-detail'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
