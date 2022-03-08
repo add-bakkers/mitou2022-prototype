@@ -7,7 +7,7 @@ import FileFetch from './components/File';
 import { Grid } from '@material-ui/core';
 import Header from './components/Header';
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Routes,
   Route
 } from "react-router-dom";
@@ -23,22 +23,22 @@ function App() {
   };
 
   return (
-      <Grid container direction="column">
         <UserState.Provider value={value}>
-        <Grid item>
           <Header />
-        </Grid>
-        <Grid item container>
-          <Grid sm={3}>
-          <UserFetch />
-          </Grid>
-          <Grid xs={12} sm={8}>
+        <BrowserRouter>
+        <Routes>
+          <Route path="/" element={
+            <UserFetch />
+          } />
+          <Route path="/data" element={
             <DataFetch />
+          } />
+          <Route path="/file" element={
             <FileFetch />
-          </Grid>
-        </Grid>
+          } />
+        </Routes>
+        </BrowserRouter>
         </UserState.Provider>
-      </Grid>
   );
 }
 

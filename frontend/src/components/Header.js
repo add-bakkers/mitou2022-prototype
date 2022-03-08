@@ -39,7 +39,6 @@ const ResponsiveAppBar = () => {
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
-      <BrowserRouter >
         <Toolbar disableGutters>
           <Typography
             variant="h6"
@@ -93,8 +92,7 @@ const ResponsiveAppBar = () => {
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
-                to={page}
-                component={Link}
+                href={page}
               >
                 {page}
               </Button>
@@ -138,7 +136,6 @@ const ResponsiveAppBar = () => {
             </Menu>
           </Box>
         </Toolbar>
-        </BrowserRouter>
       </Container>
     </AppBar>
   );
