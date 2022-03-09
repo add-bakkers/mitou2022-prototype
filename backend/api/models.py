@@ -38,21 +38,20 @@ class Data(models.Model):
     description = models.TextField(default="")
     user = models.ForeignKey(User, related_name='data_user', on_delete=models.CASCADE)
     tag1 = models.ForeignKey(Tag1, related_name='data_tag1', on_delete=models.CASCADE)
-    tag2 = models.ForeignKey(Tag1, related_name='data_tag2', on_delete=models.CASCADE)
+    tag2 = models.ForeignKey(Tag2, related_name='data_tag2', on_delete=models.CASCADE)
     sensor = models.ForeignKey(Sensor, related_name='data_sensor', on_delete=models.CASCADE)
     sensor_type = models.ForeignKey(SensorType, related_name='data_sensor_type', on_delete=models.CASCADE)
-
+    created_at = models.DateTimeField(auto_now_add=True)
     
     class Meta:
         ordering = ["title"]
 
 class File(models.Model):
-    name = models.CharField(max_length=30)
     file = models.FileField(upload_to='file/%Y/%m/%d')
     data = models.ForeignKey(Data, related_name='file', on_delete=models.CASCADE)
 
     class Meta:
-        ordering = ["name"]
+        ordering = ["data"]
 
 class Analysis(models.Model):
     name = models.CharField(max_length=30)

@@ -6,9 +6,9 @@ authors = ["add-bakkers <add.re.0828@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-Django = "^4.0.3"
 djangorestframework = "^3.13.1"
 django-cors-headers = "^3.11.0"
+Django = "3.2.12"
 
 [tool.poetry.dev-dependencies]
 
