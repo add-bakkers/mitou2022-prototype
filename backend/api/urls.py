@@ -4,11 +4,8 @@ from api import views
 from rest_framework.routers import DefaultRouter
 from django.contrib import admin
 
-router = DefaultRouter()
-router.register(r'file',views.FileViewSet,basename='file')
 
 urlpatterns = [
-    path('api/', include(router.urls)),
     path('users/', views.UserList.as_view()),
     path('users/<int:pk>/', views.UserList.as_view(), name='user-detail'),
     path('tag1/', views.UserList.as_view()),
@@ -23,4 +20,6 @@ urlpatterns = [
     path('data/<int:pk>/', views.DataList.as_view(), name='data-detail'),
     path('analysis/', views.AnalysisList.as_view()),
     path('analysis/<int:pk>/', views.AnalysisList.as_view(), name='analysis-detail'),
+    path('file/', views.FileUpload.as_view()),
+    path('file/<int:pk>/', views.FileList.as_view(), name='file-detail'),
 ]

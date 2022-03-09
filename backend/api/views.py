@@ -80,25 +80,18 @@ class AnalysisList(generics.ListCreateAPIView):
 
 class FileList(generics.ListCreateAPIView):
     queryset = File.objects.all()
-    serializer_class = AnalysisSerializer
+    serializer_class = FileSerializer
 
-class UploadFile(generics.GenericAPIView):
-    queryset = File.objects.all()
-    parser_classes = [FormParser, MultiPartParser]
 
+class FileUpload(generics.GenericAPIView):
     def post(self, request, *args, **kwargs):
         try:
-            file = request.data['file']
+            obj = File(
+                file = request.data['file'],
+                data = Data.objects.latest("created_at")
+                )
+            obj.save()
         except KeyError:
             raise ParseError('Request has no resource file attached')
         return JsonResponse({}, status=status.HTTP_201_CREATED)
 
-class FileViewSet(viewsets.ModelViewSet):
-    serializer_class = FileSerializer
-    parser_classes = (MultiPartParser, FormParser,)
-    queryset=File.objects.all()
-
-    def perform_create(self, serializer):
-        print(self.request.data)
-        serializer.save(data=Data.objects.latest('created_at'),
-                   file=self.request.data.get('file'))

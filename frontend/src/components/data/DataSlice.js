@@ -23,7 +23,10 @@ export const getData = async () => {
 export const postData = (data,selectedFile,user) => {
     try {
         const uploadData = JSON.stringify(data);
-
+        let formData = new FormData();
+        formData.append("firstName", "John");
+        formData.append("file", selectedFile, selectedFile.name);
+        console.log(formData);
         fetch(`${apiUrl}data/`, {
             method: "POST",
             headers: {
@@ -32,18 +35,23 @@ export const postData = (data,selectedFile,user) => {
             body: uploadData,
         }).then(() => {
             console.log(uploadData);
-            console.log(data);
+        }).then(() => {
+            fetch(`${apiUrl}file/`, {
+                method: "POST",
+                headers: {
+                    "Content-type": "multipart/form-data; boundary=----mitou2022boundary",
+                },
+                body: formData,
+            });
+        }).then((response) => response.json())
+        .then((result) => {
+            console.log('Success:', result);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
         });
-        // const formData = new FormData();
-        // formData.append("file", selectedFile);
-        // formData.append("user", user);
-        // fetch(`${apiUrl}api/file/`, {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-type": "multipart/form-data",
-        //     },
-        //     body: formData,
-        // });
+        
+
     } catch(error) {
         console.log(error)
     }
