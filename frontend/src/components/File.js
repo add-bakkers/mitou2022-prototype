@@ -31,18 +31,21 @@ const FileFetch = () => {
         setEditedFile({ ...editedFile, [name]: value });
     };
     return (
-      <form onSubmit={handleSubmit}>
-        <input
-        type="text"
-        name="data"
-        value=""
-        onChange={(evt) => handleInputChange(evt)}
-        placeholder="data"
-        required
-      />
-        <input type="file" onChange={handleFileSelect}/>
-        <input type="submit" value="Upload File" />
-      </form>
+      <div>
+        <br></br>
+        <form onSubmit={handleSubmit}>
+          <input
+          type="text"
+          name="data"
+          value=""
+          onChange={(evt) => handleInputChange(evt)}
+          placeholder="data"
+          required
+        />
+          <input type="file" onChange={handleFileSelect}/>
+          <input type="submit" value="Upload File" />
+        </form>
+      </div>
     );
 };
 

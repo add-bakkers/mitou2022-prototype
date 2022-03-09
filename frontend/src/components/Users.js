@@ -44,15 +44,7 @@ const UserFetch = () => {
 
   return (
     <div>
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>
-            {" "}
-            {user.name}
-            <button onClick={ () => handleClick(user.name)}>選択</button>
-          </li>
-        ))}
-      </ul>
+      <br></br>
       <input
         type="text"
         name="name"
@@ -62,6 +54,15 @@ const UserFetch = () => {
         required
       />
       <button onClick={() => newUser(editedUser)}>Create</button>
+      <ul>
+        {users.map((user) => (
+          <li key={user.id}>
+            {" "}
+            {user.name}
+            <button onClick={ () => handleClick(user.name)}>選択</button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

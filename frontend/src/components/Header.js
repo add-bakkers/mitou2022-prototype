@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { BrowserRouter,Link } from "react-router-dom";
 import { UserState } from "../App";
-const pages = ['upload','analysis','search'];
+const pages = ['upload','analysis','search','user'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar = () => {
@@ -39,7 +39,6 @@ const ResponsiveAppBar = () => {
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
-      <BrowserRouter >
         <Toolbar disableGutters>
           <Typography
             variant="h6"
@@ -93,8 +92,7 @@ const ResponsiveAppBar = () => {
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
-                to={page}
-                component={Link}
+                href={page}
               >
                 {page}
               </Button>
@@ -138,7 +136,6 @@ const ResponsiveAppBar = () => {
             </Menu>
           </Box>
         </Toolbar>
-        </BrowserRouter>
       </Container>
     </AppBar>
   );

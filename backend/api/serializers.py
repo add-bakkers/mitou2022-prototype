@@ -21,7 +21,7 @@ class Tag1Serializer(serializers.HyperlinkedModelSerializer):
 
 class Tag2Serializer(serializers.HyperlinkedModelSerializer):
 
-    ata_tag2 = serializers.HyperlinkedRelatedField(view_name='data-detail', many=True, read_only=True)
+    data_tag2 = serializers.HyperlinkedRelatedField(view_name='data-detail', many=True, read_only=True)
     
     class Meta:
         model = Tag2
@@ -54,7 +54,7 @@ class DataSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Data
 
-        fields = ['url', 'id', 'title', 'description', 'user', 'tag1', 'tag2', 'sensor', 'sensor_type', 'file', 'analysis']
+        fields = ['url', 'id', 'title', 'description', 'user', 'tag1', 'tag2', 'sensor', 'sensor_type', 'file', 'analysis', 'created_at']
 
 class AnalysisSerializer(serializers.HyperlinkedModelSerializer):
 
@@ -68,4 +68,4 @@ class FileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = File
 
-        fields = ['url', 'id', 'name', 'data', 'file']
+        fields = ['url', 'id', 'data', 'file']
