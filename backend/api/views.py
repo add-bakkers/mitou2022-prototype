@@ -43,33 +43,38 @@ class DataList(generics.ListCreateAPIView):
     queryset = Data.objects.all()
     serializer_class = DataSerializer
 
-class DataUpload(generics.GenericAPIView):
+class DataUpload(APIView):
     def post(self, request, *args, **kwargs):
-        params=["user","title","description","tag1","tag2","sensor","sensor_type"]
-        dataset = {}
+        dataset=request.data
+        with open('text.txt', mode='a') as f:
+            f.write(str(dataset))
+        params=['user','title','description','tag1','tag2','sensor','sensor_type']
         for param in params:
             try:
-                dataset[param]=request.POST[param]
+                with open('text.txt', mode='a') as f:
+                    f.write(param+'\n')
+                    f.write(dataset[param]+'\n')
             except:
-                # if param=="user":
+                # if param=='user':
                 #     return Http404
-                dataset[param]=""
+                dataset[param]=''
 
-        Tag1.objects.get_or_create(defaults=None, name=dataset["tag1"])
-        Tag2.objects.get_or_create(defaults=None, name=dataset["tag2"])
-        Sensor.objects.get_or_create(defaults=None, name=dataset["sensor"])
-        SensorType.objects.get_or_create(defaults=None, name=dataset["sensor_type"])
+        Tag1.objects.get_or_create(defaults=None, name=dataset['tag1'])
+        Tag2.objects.get_or_create(defaults=None, name=dataset['tag2'])
+        Sensor.objects.get_or_create(defaults=None, name=dataset['sensor'])
+        SensorType.objects.get_or_create(defaults=None, name=dataset['sensor_type'])
 
         obj = Data(
             user=User.objects.get(id=1),
-            title=dataset["title"],
-            description=dataset["description"],
-            tag1=Tag1.objects.get(name=dataset["tag1"]),
-            tag2=Tag2.objects.get(name=dataset["tag2"]),
-            sensor=Sensor.objects.get(name=dataset["sensor"]),
-            sensor_type=SensorType.objects.get(name=dataset["sensor_type"])
+            title=dataset['title'],
+            description=dataset['description'],
+            tag1=Tag1.objects.get(name=dataset['tag1']),
+            tag2=Tag2.objects.get(name=dataset['tag2']),
+            sensor=Sensor.objects.get(name=dataset['sensor']),
+            sensor_type=SensorType.objects.get(name=dataset['sensor_type'])
             )
         obj.save()
+        
         return JsonResponse({}, status=status.HTTP_201_CREATED)
         
         
@@ -88,10 +93,13 @@ class FileUpload(generics.GenericAPIView):
         try:
             obj = File(
                 file = request.data['file'],
-                data = Data.objects.latest("created_at")
+                data = Data.objects.latest('created_at')
                 )
             obj.save()
         except KeyError:
             raise ParseError('Request has no resource file attached')
         return JsonResponse({}, status=status.HTTP_201_CREATED)
 
+class Analyse(APIView):
+    def post(self, request, *args, **kwargs):
+        dataset=request.data

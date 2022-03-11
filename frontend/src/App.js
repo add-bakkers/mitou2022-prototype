@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import React, { useState } from "react";
 import UserFetch from './components/Users';
-import DataFetch from './components/data/Data';
+import UploadFetch from './components/Upload';
 import FileFetch from './components/File';
 import { Grid } from '@material-ui/core';
 import Header from './components/Header';
@@ -11,6 +11,8 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import AnalysisFetch from './components/Analysis';
+import DataFetch from './components/Data';
 
 
 export const UserState = React.createContext();
@@ -31,10 +33,16 @@ function App() {
             <UserFetch />
           } />
           <Route path="/upload" element={
+            <UploadFetch />
+          } />
+          <Route path="/data" element={
             <DataFetch />
           } />
           <Route path="/user" element={
             <UserFetch />
+          } />
+          <Route path="/analysis" element={
+            <AnalysisFetch />
           } />
           <Route path="/file" element={
             <FileFetch />

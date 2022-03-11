@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { BrowserRouter,Link } from "react-router-dom";
 import { UserState } from "../App";
-const pages = ['upload','analysis','search','user'];
+const pages = ['upload','data','analysis','search','user'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar = () => {
