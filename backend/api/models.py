@@ -54,10 +54,8 @@ class File(models.Model):
         ordering = ["data"]
 
 class Analysis(models.Model):
-    name = models.CharField(max_length=30)
     data = models.ForeignKey(Data, related_name='analysis', on_delete=models.CASCADE)
-    method = models.CharField(max_length=30)
-    result = models.CharField(max_length=30)
+    result = models.FloatField()
 
     class Meta:
-        ordering = ["name"]
+        ordering = ["data"]

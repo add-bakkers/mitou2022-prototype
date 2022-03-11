@@ -16,12 +16,17 @@ const DataFetch = () => {
   }, []);
   
   const postAnalysis = (_data) => {
+    const formData = {
+        id: _data.id,
+    };
+    const uploadData = JSON.stringify(formData);
     try {
         fetch(`http://127.0.0.1:8000/data/${_data.id}/analysis/`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json",
-            }
+            },
+            body: formData,
           });
       } catch(error) {
           console.log(error)

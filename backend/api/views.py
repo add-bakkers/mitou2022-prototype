@@ -13,9 +13,9 @@ from rest_framework import generics, viewsets
 from rest_framework.parsers import JSONParser, FormParser, MultiPartParser
 from rest_framework.exceptions import ParseError
 from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
-
+import numpy as np
+from django.shortcuts import render, get_object_or_404
+from .models import File
 from api.serializers import UserSerializer, Tag1Serializer,Tag2Serializer,SensorSerializer,SensorTypeSerializer,DataSerializer,AnalysisSerializer,FileSerializer
 # Create your views here.
 
@@ -103,3 +103,13 @@ class FileUpload(generics.GenericAPIView):
 class Analyse(APIView):
     def post(self, request, *args, **kwargs):
         dataset=request.data
+        
+        file_value = get_object_or_404(File, id=dataset['id'])
+        dat = np.loadtxt(file_value, delimiter=',',dtype='float')
+        ret = np.mean(dat)
+
+        obj = Analysis(
+            data = Data.objects.get(id=dataset['id']),
+            result = ret
+        )
+        obj.save()
