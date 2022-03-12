@@ -14,4 +14,4 @@ RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-
 RUN poetry install --no-dev
 
 ENTRYPOINT [ "poetry", "run" ]
-CMD ["python", "api/manage.py", "runserver"]
+CMD ["python", "backend/manage.py", "runserver"]

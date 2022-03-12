@@ -1,5 +1,4 @@
 from pdb import post_mortem
-from tkinter.tix import Tree
 from urllib import response
 from rest_framework import renderers
 from api.models import  User,Tag1,Tag2,Sensor,SensorType,Data,File,Analysis

@@ -13,7 +13,7 @@ const UploadFetch = () => {
   const [selectedFile, setSelectedFile] = useState();
 	const [isFilePicked, setIsFilePicked] = useState(false);
 
-  const apiUrl = "http://127.0.0.1:8000/";
+  const apiUrl = "http://35.76.77.29:8000/";
 
 	const changeHandler = (event) => {
 		setSelectedFile(event.target.files[0]);

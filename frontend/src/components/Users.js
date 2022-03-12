@@ -9,7 +9,7 @@ const UserFetch = () => {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/users/")
+      .get("http://35.76.77.29:8000/users/")
       .then((res) => {
         setUsers([])
         setUsers(res.data);
@@ -22,7 +22,7 @@ const UserFetch = () => {
       name: user.name,
     };
     axios
-      .post(`http://127.0.0.1:8000/users/`, data, {
+      .post(`http://35.76.77.29:8000/users/`, data, {
         headers: {
           "Content-Type": "application/json",
         },

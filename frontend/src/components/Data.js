@@ -8,7 +8,7 @@ const DataFetch = () => {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/data/")
+      .get("http://35.76.77.29:8000/data/")
       .then((res) => {
         setData([])
         setData(res.data);
@@ -21,7 +21,7 @@ const DataFetch = () => {
     };
     const uploadData = JSON.stringify(formData);
     try {
-        fetch(`http://127.0.0.1:8000/data/${_data.id}/analysis/`, {
+        fetch(`http://35.76.77.29:8000/data/${_data.id}/analysis/`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json",
