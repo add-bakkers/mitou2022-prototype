@@ -8,6 +8,9 @@ services:
       - ./backend:/app/backend
     ports:
       - "8000:8000"
+    networks:
+      fixed_compose_network:
+        ipv4_address: 192.168.2.10
   frontend:
     build: ./frontend
     command: "npm start"
@@ -16,6 +19,16 @@ services:
       - node-modules:/app/frontend/node_modules
     ports:
       - "3000:3000"
+    networks:
+      fixed_compose_network:
+        ipv4_address: 192.168.2.20
 
 volumes:
   node-modules:
+
+networks:
+  fixed_compose_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.2.0/24
